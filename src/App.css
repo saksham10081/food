@@ -139,3 +139,156 @@
   gap: 12px;
   background-color: #f4f4f4;
 }
+
+/* --- SIPs Page Styles --- */
+.sips-page {
+  padding: 0 20px 40px 20px;
+}
+
+.sips-page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 8px;
+}
+
+.sips-summary-label {
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.sips-summary-value {
+  color: #111827;
+  font-size: 24px;
+  font-weight: 800;
+}
+
+.sips-toolbar {
+  background: #f6f6fb;
+  border: 1px solid #e5e7eb;
+  border-left: none;
+  border-right: none;
+  padding: 12px 8px;
+  margin-bottom: 16px;
+}
+
+.sips-tabs {
+  display: flex;
+  gap: 12px;
+}
+
+.sips-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 20px;
+  border: 1px solid #e5e7eb;
+  background: white;
+  color: #374151;
+  cursor: pointer;
+}
+
+.sips-tab.active {
+  border-color: #6c3bd2;
+  color: #6c3bd2;
+  font-weight: 700;
+}
+
+.sips-tab-count {
+  background: #f3f4f6;
+  color: #111827;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.sip-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.sip-card {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.sip-card-header {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 8px;
+}
+
+.badge {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 8px;
+  border-radius: 9999px;
+  border: 1px solid transparent;
+}
+
+.badge-active {
+  color: #047857;
+  background: #ecfdf5;
+  border-color: #34d399;
+}
+
+.badge-paused {
+  color: #b45309;
+  background: #fffbeb;
+  border-color: #fbbf24;
+}
+
+.badge-cancelled {
+  color: #991b1b;
+  background: #fef2f2;
+  border-color: #fca5a5;
+}
+
+.sip-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sip-card-title {
+  font-size: 18px;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.sip-card-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.sip-card-meta {
+  display: flex;
+  flex-direction: column;
+}
+
+.sip-card-meta-label {
+  font-size: 12px;
+  color: #6b7280;
+  margin-bottom: 4px;
+}
+
+.sip-card-meta-value {
+  font-size: 16px;
+  color: #111827;
+  font-weight: 700;
+}
+
+.sips-footer-note {
+  background: #f3f4f6;
+  color: #4b5563;
+  border-radius: 8px;
+  padding: 12px;
+  margin-top: 12px;
+}
