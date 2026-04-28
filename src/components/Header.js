@@ -1,17 +1,16 @@
-import { HeaderImage } from "./Constants/Images";
-
 const Header = () => {
   return (
     <div className="header">
       <div className="logo">
-        <img src={HeaderImage} alt="" />
+        <span className="brand-mark">Hyperpure</span>
+        <span className="brand-subtitle">by Zomato</span>
       </div>
       <div className="header-tabs">
         <ul>
-          <li>Home</li>
-          <li>About Us</li>
-          <li>Contact Us</li>
-          <li>Cart</li>
+          <li>Marketplace</li>
+          <li>Quality</li>
+          <li>Support</li>
+          <li>Orders</li>
         </ul>
       </div>
     </div>

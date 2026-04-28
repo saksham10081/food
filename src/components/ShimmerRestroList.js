@@ -1,13 +1,16 @@
 const ShimmerRestroList = () => {
-  let shimmerArray = [20];
+  const shimmerArray = Array.from({ length: 6 }, (_, index) => index);
 
-  return shimmerArray.map((e) => {
-    {console.log(shimmerArray)}
-    <div className="shimmer-card">
-      <div className="shimmer-title"></div>
-      <div className="shimmer-subtitle"></div>
-    </div>;
-  });
+  return (
+    <div className="restro-container" aria-label="Loading supplier catalog">
+      {shimmerArray.map((item) => (
+        <div className="shimmer-card" key={item}>
+          <div className="shimmer-title"></div>
+          <div className="shimmer-subtitle"></div>
+        </div>
+      ))}
+    </div>
+  );
 };
 
 export default ShimmerRestroList;
