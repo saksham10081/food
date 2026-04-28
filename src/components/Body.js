@@ -1,76 +1,81 @@
 import RestroCard from "./RestroCard";
-import { useState, useEffect } from "react";
-import ShimmerRestroList from "./ShimmerRestroList";
+import { useState } from "react";
+import { suppliers } from "./Constants/suppliers";
 
 const Body = () => {
-  const [restroList, setRestroList] = useState([]);
-  const [searchRestro, setSearchRestro] = useState("");
-  const [allRestroList, setAllRestroList] = useState([]);
+  const [supplierList, setSupplierList] = useState(suppliers);
+  const [searchSupplier, setSearchSupplier] = useState("");
 
-  function filterRestro(searchRestro, allRestroList) {
-    const filterRestroList = allRestroList.filter((res) =>
-      res.data.name.toUpperCase().includes(searchRestro.toUpperCase())
+  function filterSuppliers(searchText, supplierCatalog) {
+    const normalizedSearch = searchText.trim().toUpperCase();
+
+    if (!normalizedSearch) {
+      return supplierCatalog;
+    }
+
+    const filteredSuppliers = supplierCatalog.filter((supplier) =>
+      [supplier.name, supplier.city, ...supplier.categories].some((value) =>
+        value.toUpperCase().includes(normalizedSearch)
+      )
     );
-    return filterRestroList;
+    return filteredSuppliers;
   }
 
-  useEffect(() => {
-    getRestroList();
-  }, []);
-
-  async function getRestroList() {
-    const data = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.7040592&lng=77.10249019999999&page_type=DESKTOP_WEB_LISTING"
-    );
-    const json = await data.json();
-    setRestroList(json?.data?.cards[2]?.data?.data?.cards);
-    setAllRestroList(json?.data?.cards[2]?.data?.data?.cards);
-  }
-
-  return allRestroList.length == 0 ? (
-    <ShimmerRestroList />
-  ) : (
+  return (
     <div className="body">
+      <section className="hero">
+        <p className="eyebrow">Hyperpure by Zomato</p>
+        <h1>Fresh supplies for restaurants, cafes, and cloud kitchens.</h1>
+        <p className="hero-copy">
+          Discover verified suppliers for produce, dairy, staples, packaging,
+          meat, and beverages with reliable fulfillment windows.
+        </p>
+      </section>
+
       <div className="search-filter">
         <div className="search">
           <input
             type="text"
             className="search-restro"
-            value={searchRestro}
-            placeholder="Search your favourite dish"
+            value={searchSupplier}
+            placeholder="Search supplier, city, or category"
             onChange={(e) => {
-              setSearchRestro(e.target.value);
+              setSearchSupplier(e.target.value);
             }}
           />
           <button
             type="submit"
             onClick={() => {
-              const data = filterRestro(searchRestro, allRestroList);
-              setRestroList(data);
+              const filteredData = filterSuppliers(searchSupplier, suppliers);
+              setSupplierList(filteredData);
             }}
           >
-            search
+            Search
           </button>
         </div>
 
         <div className="filter">
           <button
             onClick={() => {
-              const filterRestroList = restroList.filter(
-                (res) => res.data.costForTwo > 50000
+              const bulkReadySuppliers = suppliers.filter(
+                (supplier) => supplier.minOrderValue <= 3500
               );
-              setRestroList(filterRestroList);
+              setSupplierList(bulkReadySuppliers);
             }}
           >
-            Filter
+            Low MOQ
           </button>
         </div>
       </div>
 
       <div className="restro-container">
-        {restroList.map((restro) => {
-          return <RestroCard key={restro.data.id} restroData={restro} />;
-        })}
+        {supplierList.length > 0 ? (
+          supplierList.map((supplier) => {
+            return <RestroCard key={supplier.id} restroData={supplier} />;
+          })
+        ) : (
+          <p className="empty-state">No Hyperpure suppliers match your search.</p>
+        )}
       </div>
     </div>
   );

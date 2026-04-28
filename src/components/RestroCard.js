@@ -1,19 +1,31 @@
-import { RestroCardImage_URL } from "./Constants/Images";
-
 const RestroCard = (props) => {
   const { restroData } = props;
-  const { cloudinaryImageId, cuisines, name, costForTwo, deliveryTime } =
-    restroData.data;
+  const {
+    accent,
+    availability,
+    categories,
+    city,
+    fulfillmentTime,
+    minOrderValue,
+    name,
+  } = restroData;
+
   return (
-    <div className="restro-card">
+    <article className="restro-card">
       <div className="restro-img">
-        <img src={RestroCardImage_URL + cloudinaryImageId} />
+        <div className="supplier-visual" style={{ backgroundColor: `#${accent}` }}>
+          <span className="supplier-initials">{name.charAt(0)}</span>
+        </div>
       </div>
       <div className="restro-name">{name}</div>
-      <div className="cuisines">{cuisines}</div>
-      <div className="deliveryTime">{deliveryTime}</div>
-      <div className="cost">Rs{costForTwo / 100}</div>
-    </div>
+      <div className="cuisines">{categories.join(", ")}</div>
+      <div className="deliveryTime">{fulfillmentTime}</div>
+      <div className="supplier-meta">
+        <span>{city}</span>
+        <span>{availability}</span>
+      </div>
+      <div className="cost">Min. order Rs {minOrderValue.toLocaleString("en-IN")}</div>
+    </article>
   );
 };
 
